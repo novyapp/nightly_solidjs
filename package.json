@@ -27,6 +27,7 @@
     "vite-plugin-solid": "^2.5.0"
   },
   "dependencies": {
+    "@storybook/web-components": "^6.5.16",
     "solid-js": "^1.6.2"
   }
 }
