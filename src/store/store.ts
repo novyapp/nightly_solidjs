@@ -1,0 +1,22 @@
+import { createSignal } from "solid-js";
+import { currencyData as data } from "../data/chartDataGenerator";
+
+interface FormFields {
+  withdraw: string;
+  amount: number | string;
+}
+
+const defaultFormFields: FormFields = {
+  withdraw: "",
+  amount: "",
+};
+
+export const [formFields, setFormFields] =
+  createSignal<FormFields>(defaultFormFields);
+
+export const [cryptoList, setCryptoList] = createSignal(data);
+export const [selectedCurrency, setSelectedCurrency] = createSignal(data[0]);
+
+export const [disabled, setDisabled] = createSignal(true);
+
+export const [showSnackbar, setShowSnackbar] = createSignal(false);

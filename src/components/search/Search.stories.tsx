@@ -1,7 +1,7 @@
 import { Meta, Story } from "@storybook/web-components";
-import { ComponentProps, createSignal } from "solid-js";
-import { listOfCurrencyProps } from "../Main";
-import { Search, SearchProps } from "../components/search/Search";
+import { createSignal } from "solid-js";
+import { listOfCurrencyProps } from "../../data/chartDataGenerator";
+import { Search, SearchProps } from "./Search";
 
 export default {
   title: "Components/Search",
@@ -14,7 +14,7 @@ const Template = (args: SearchProps) => {
   return <Search {...args} filter={filter} setFilter={setFilter} />;
 };
 
-const mockData: listOfCurrencyProps[] = [
+const mockData = [
   {
     id: 1,
     fullLabel: "Bitcoin",
@@ -56,6 +56,5 @@ const mockData: listOfCurrencyProps[] = [
 
 export const Default: Story<SearchProps> = Template.bind({});
 Default.args = {
-  cryptoList: mockData,
-  setSelectedCurrency: (crypto: listOfCurrencyProps) => console.log(crypto),
+  cryptoList: () => mockData as listOfCurrencyProps[],
 };

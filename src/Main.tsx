@@ -1,76 +1,27 @@
-import { Component, createEffect, createSignal } from "solid-js";
-import { Search } from "./components/search/Search";
-
-export interface listOfCurrencyProps {
-  id: number;
-  fullLabel: string;
-  shortLabel: string;
-  iconUrl: string;
-}
-
-const listOfCurrency: listOfCurrencyProps[] = [
-  {
-    id: 1,
-    fullLabel: "Bitcoin",
-    shortLabel: "BTC",
-    iconUrl: "bitcoin.png",
-  },
-  {
-    id: 2,
-    fullLabel: "Ethereum",
-    shortLabel: "ETH",
-    iconUrl: "ethereum.png",
-  },
-  {
-    id: 3,
-    fullLabel: "USD Coin",
-    shortLabel: "USDC",
-    iconUrl: "usd_coin.png",
-  },
-
-  {
-    id: 4,
-    fullLabel: "TetherUS",
-    shortLabel: "USDT",
-    iconUrl: "tetherus.png",
-  },
-  {
-    id: 5,
-    fullLabel: "NEAR Protocol ",
-    shortLabel: "NEAR",
-    iconUrl: "near.png",
-  },
-  {
-    id: 6,
-    fullLabel: "Aptos",
-    shortLabel: "APT",
-    iconUrl: "aptos.png",
-  },
-];
-
-//onInput = OnChange
+import { Component } from "solid-js";
+import { Chart } from "./components/chart/Chart";
+import { selectedCurrency, showSnackbar } from "./store/store";
+import { FormWithdraw } from "./components/form-withdraw/FormWitdraw";
+import { Snackbar } from "./components/snackbar/Snackbar";
 
 export const Main: Component = () => {
-  const [cryptoList, setCryptoList] = createSignal(listOfCurrency);
-  const [selectedCurrency, setSelectedCurrency] = createSignal(
-    listOfCurrency[0]
-  );
-  const [filter, setFilter] = createSignal("");
-
-  createEffect(() => {
-    console.log(filter());
-    console.log(selectedCurrency());
-  });
-
   return (
-    <>
-      Search
-      <Search
-        cryptoList={cryptoList()}
-        setSelectedCurrency={setSelectedCurrency}
-        filter={filter}
-        setFilter={setFilter}
-      />
-    </>
+    <div class="flex flex-col relative">
+      <div class="my-4 mx-6">
+        <img src="/logo.svg" />
+      </div>
+      <div class="flex justify-between gap-10 m-14">
+        {showSnackbar() ? <Snackbar /> : null}
+        <div
+          class="bg-[#090b12]  border border-[#2b344d] rounded-lg shadow-lg p-4 
+        relative w-[330px]"
+        >
+          <FormWithdraw />
+        </div>
+        <div class="bg-[#090b12] border-[#2b344d] border shadow-lg rounded-lg flex-1">
+          <Chart selectedCurrency={selectedCurrency} />
+        </div>
+      </div>
+    </div>
   );
 };

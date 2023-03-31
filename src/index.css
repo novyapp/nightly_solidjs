@@ -1,16 +1,15 @@
-:root {
-  font-family: "Poppins", sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@layer base {
+  body {
+    background: #060716;
+    color: #f7f7f7;
 
-body {
-  color: white;
-  background-color: #060716;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+  }
 }
