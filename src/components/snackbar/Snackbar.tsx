@@ -7,7 +7,6 @@ import {
 export const Snackbar = () => {
   const handleSnackbarClose = (e: MouseEvent) => {
     e.preventDefault();
-
     setShowSnackbar(false);
   };
 

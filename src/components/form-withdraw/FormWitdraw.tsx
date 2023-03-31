@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { createEffect, createSignal } from "solid-js";
 import { z, ZodFormattedError } from "zod";
 import { Toggle } from "../toggle/Toggle";
 import {
@@ -9,6 +9,7 @@ import {
   setDisabled,
   setShowSnackbar,
 } from "../../store/store";
+import { Input } from "../input/Input";
 
 export const FormWithdraw = () => {
   const [errors, setErrors] =
@@ -72,7 +73,14 @@ export const FormWithdraw = () => {
     const max = +(
       selectedCurrency().limits.maximum - selectedCurrency().limits.networkFee
     ).toFixed(6);
+
     setFormFields({ ...formFields(), amount: max });
+
+    console.log(max);
+  };
+
+  const handleCryptoAddress = (e: MouseEvent) => {
+    e.preventDefault();
   };
 
   const handleSnackbar = (e: MouseEvent) => {
@@ -81,58 +89,45 @@ export const FormWithdraw = () => {
     setFormFields(() => {
       return { withdraw: "", amount: "" };
     });
+    console.log();
     setDisabled(true);
   };
+
+  createEffect(() => {
+    console.log(selectedCurrency().limits.maximum);
+  });
 
   return (
     <>
       <span class="mb-6 block">Withdraw crypto</span>
       <Toggle />
       <form>
-        <label class=" text-xs text-[#7685a0] my-2 block">Withdraw to</label>
-        <div class=" w-full flex flex-col relative mb-4">
-          <input
-            class="bg-[#040407] border-[#171c2f] border rounded text-sm py-2 px-3 text-[#b1bdd4]"
-            name="withdraw"
-            type="text"
-            value={formFields().withdraw}
-            onInput={handleChange}
-          />
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-            class="cursor-pointer bg-[#6067f940]  h-6 w-6 border-0 absolute right-0
-         top-0 translate-x-[-25%] translate-y-[25%] justify-center flex items-center rounded-full"
-          >
-            <img src="/address.png" />
-          </button>
-          {errors()?.withdraw?._errors.map((er) => (
-            <p class=" text-[red] text-xs">{er}</p>
-          ))}
-        </div>
-        <label class=" text-xs text-[#7685a0] my-2 block">Amount</label>
-        <div class=" w-full flex flex-col relative mb-4">
-          <input
-            class="bg-[#040407] border-[#171c2f] border rounded text-sm py-2 px-3 text-[#b1bdd4]"
-            name="amount"
-            type="number"
-            placeholder="Enter amount"
-            value={formFields().amount}
-            step="0.000001"
-            onInput={handleChange}
-          />
-          <button
-            class="cursor-pointer bg-[#6067f940] text-[#8793FF] text-xs px-2 rounded h-6 border-0
-          absolute right-0 top-0 translate-x-[-25%] translate-y-[25%]"
-            onClick={(e) => handleMaxValue(e)}
-          >
-            Max
-          </button>
-          {errors()?.amount?._errors.map((er) => (
-            <p class=" text-[red] text-xs">{er}</p>
-          ))}
-        </div>
+        <Input
+          label="Withdraw to"
+          name="withdraw"
+          type="text"
+          value={formFields}
+          onInput={handleChange}
+          error={errors}
+          buttonType="icon"
+          buttonAction={handleCryptoAddress}
+        >
+          <img src="/address.png" />
+        </Input>
+        <Input
+          label="Amount"
+          name="amount"
+          type="number"
+          placeholder="Enter amount"
+          value={formFields}
+          step="0.000001"
+          onInput={handleChange}
+          error={errors}
+          buttonAction={handleMaxValue}
+        >
+          Max
+        </Input>
+
         <div class="flex flex-wrap pt-4 border-t border-[#2b344d]">
           <div class="flex flex-col w-1/2">
             <label class=" text-xs text-[#7685a0] my-2 block">

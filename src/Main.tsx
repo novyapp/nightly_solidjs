@@ -1,4 +1,4 @@
-import { Component } from "solid-js";
+import { Component, Show } from "solid-js";
 import { Chart } from "./components/chart/Chart";
 import { selectedCurrency, showSnackbar } from "./store/store";
 import { FormWithdraw } from "./components/form-withdraw/FormWitdraw";
@@ -11,7 +11,9 @@ export const Main: Component = () => {
         <img src="/logo.svg" />
       </div>
       <div class="flex justify-between gap-10 m-14">
-        {showSnackbar() ? <Snackbar /> : null}
+        <Show when={showSnackbar()}>
+          <Snackbar />
+        </Show>
         <div
           class="bg-[#090b12]  border border-[#2b344d] rounded-lg shadow-lg p-4 
         relative w-[330px]"

@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { Show, createSignal } from "solid-js";
 import { CurrencySelect } from "../currencyselect/CurrencySelect";
 import { Search } from "../search/Search";
 
@@ -12,13 +12,13 @@ export const Toggle = () => {
         toogleCryptoList={toogleCryptoList}
         setToogleCryptoList={setToogleCryptoList}
       />
-      {toogleCryptoList() && (
+      <Show when={toogleCryptoList()}>
         <Search
           setToogleCryptoList={setToogleCryptoList}
           filter={filter}
           setFilter={setFilter}
         />
-      )}
+      </Show>
     </div>
   );
 };
