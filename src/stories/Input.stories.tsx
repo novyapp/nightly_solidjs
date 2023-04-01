@@ -1,5 +1,5 @@
 import { Meta, Story } from "@storybook/web-components";
-import { Input, InputProps } from "./Input";
+import { Input, InputProps } from "../components/input/Input";
 
 export default {
   title: "Input",

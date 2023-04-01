@@ -1,8 +1,9 @@
 import { Story } from "@storybook/web-components";
 
-import { listOfCurrencyProps } from "../../data/chartDataGenerator";
+import { listOfCurrencyProps } from "../data/chartDataGenerator";
 import { createSignal } from "solid-js";
-import { CurrencySelectProps, Toggle } from "./toggle";
+import { Toggle } from "../components/toggle/Toggle";
+import { CurrencySelectProps } from "../components/currencyselect/CurrencySelect";
 
 export default {
   title: "Toggle",
@@ -31,7 +32,6 @@ const mockData = [
     margin: "df",
     leverage: "2",
     limits: [{ minimum: 9, maximum: 12, networkFee: 3 }],
-    data: [],
   },
   {
     id: 2,
@@ -41,7 +41,6 @@ const mockData = [
     margin: 1.5,
     leverage: 10,
     limits: [{ minimum: 9, maximum: 12, networkFee: 3 }],
-    data: [],
   },
   {
     id: 3,
@@ -51,7 +50,6 @@ const mockData = [
     margin: 1.5,
     leverage: 10,
     limits: [{ minimum: 9, maximum: 12, networkFee: 3 }],
-    data: [],
   },
 
   {
@@ -62,7 +60,6 @@ const mockData = [
     margin: 1.5,
     leverage: 10,
     limits: [{ minimum: 9, maximum: 12, networkFee: 3 }],
-    data: [],
   },
   {
     id: 5,
@@ -72,7 +69,6 @@ const mockData = [
     margin: 1.5,
     leverage: 10,
     limits: [{ minimum: 9, maximum: 12, networkFee: 3 }],
-    data: [],
   },
   {
     id: 6,
@@ -82,13 +78,12 @@ const mockData = [
     margin: 1.5,
     leverage: 10,
     limits: [{ minimum: 9, maximum: 12, networkFee: 3 }],
-    data: [],
   },
 ];
 
 export const Default = Template.bind({});
 Default.args = {
-  cryptoList: () => mockData as unknown as listOfCurrencyProps[],
+  cryptoList: () => mockData as listOfCurrencyProps[],
   selectedCurrency: () =>
     ({
       iconUrl: "bitcoin.png",

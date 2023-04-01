@@ -10,6 +10,7 @@ import {
   setShowSnackbar,
 } from "../../store/store";
 import { Input } from "../input/Input";
+import { CurrencyDetail } from "../currencydetail/CurrencyDetail";
 
 export const FormWithdraw = () => {
   const [errors, setErrors] =
@@ -127,35 +128,16 @@ export const FormWithdraw = () => {
         >
           Max
         </Input>
-
         <div class="flex flex-wrap pt-4 border-t border-[#2b344d]">
-          <div class="flex flex-col w-1/2">
-            <label class=" text-xs text-[#7685a0] my-2 block">
-              Minimum amount
-            </label>
-            <p class="text-md">
-              {selectedCurrency().limits.minimum}{" "}
-              {selectedCurrency().shortLabel}
-            </p>
-          </div>
-          <div class="flex flex-col">
-            <label class=" text-xs text-[#7685a0] my-2 block">
-              Maximum amount
-            </label>
-            <p class=" text-md ">
-              {selectedCurrency().limits.maximum}{" "}
-              {selectedCurrency().shortLabel}
-            </p>
-          </div>
-          <div class="flex flex-col">
-            <label class=" text-xs text-[#7685a0] my-2 block">
-              Network Fee
-            </label>
-            <p>
-              ~ {selectedCurrency().limits.networkFee}{" "}
-              {selectedCurrency().shortLabel}
-            </p>
-          </div>
+          <CurrencyDetail label="Minimum amount">
+            {selectedCurrency().limits.minimum}
+          </CurrencyDetail>
+          <CurrencyDetail label="Maximum amount">
+            {selectedCurrency().limits.maximum}
+          </CurrencyDetail>
+          <CurrencyDetail label="Network Fee">
+            ~ {selectedCurrency().limits.networkFee}
+          </CurrencyDetail>
         </div>
         <button
           class="w-full bg-[#6067f9] h-8 rounded text-sm border-0 mt-4 disabled:bg-[#7685a0]"
