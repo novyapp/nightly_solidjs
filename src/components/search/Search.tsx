@@ -6,6 +6,8 @@ import {
   setSelectedCurrency,
   setFormFields,
   setDisabled,
+  setErrors,
+  formFields,
 } from "../../store/store";
 
 export interface SearchProps {
@@ -23,7 +25,7 @@ export const Search: Component<SearchProps> = ({
     setSelectedCurrency(item);
     setFilter("");
     setToogleCryptoList(false);
-    setFormFields({ withdraw: "", amount: "" });
+    setFormFields({ ...formFields(), amount: "" });
     setDisabled(true);
   };
 

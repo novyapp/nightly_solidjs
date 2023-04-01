@@ -1,5 +1,5 @@
-import { createEffect, createSignal } from "solid-js";
-import { z, ZodFormattedError } from "zod";
+import { createEffect } from "solid-js";
+import { z } from "zod";
 import { Toggle } from "../toggle/Toggle";
 import {
   formFields,
@@ -8,40 +8,52 @@ import {
   disabled,
   setDisabled,
   setShowSnackbar,
+  setErrors,
+  errors,
 } from "../../store/store";
 import { Input } from "../input/Input";
 import { CurrencyDetail } from "../currencydetail/CurrencyDetail";
 
 export const FormWithdraw = () => {
-  const [errors, setErrors] =
-    createSignal<
-      ZodFormattedError<{ withdraw: string; amount: number }, string>
-    >();
+  const validate = () => {
+    const FormData = z.object({
+      withdraw: z
+        .string()
+        .startsWith("0x", { message: "Must start from 0x" })
+        .regex(/[0-9]+/i, { message: "At least 1 number" })
+        .regex(/[A-Z]+/, { message: "At least 1 capitalize letter" })
+        .regex(/[!@#$&*]+/i, { message: "At least 1 special character" })
+        .length(32, { message: "Must be 32 characters long" }),
 
-  const FormData = z.object({
-    withdraw: z
-      .string()
-      .startsWith("0x", { message: "Must start from 0x" })
-      .regex(/[0-9]+/i, { message: "At least 1 number" })
-      .regex(/[!@#$&*]+/i, { message: "At least 1 special character" })
-      .length(32, { message: "Must be 32 characters long" }),
+      amount: z
+        .number()
+        .min(selectedCurrency().limits.minimum, {
+          message: `Must be minimum ${selectedCurrency().limits.minimum}`,
+        })
+        .max(
+          +(
+            selectedCurrency().limits.maximum -
+            selectedCurrency().limits.networkFee
+          ).toFixed(6),
+          {
+            message: `Must be maximum ${+(
+              selectedCurrency().limits.maximum -
+              selectedCurrency().limits.networkFee
+            ).toFixed(6)}`,
+          }
+        ),
+    });
 
-    amount: z
-      .number()
-      .min(Number(selectedCurrency().limits.minimum), {
-        message: `Must be minimum ${selectedCurrency().limits.minimum}`,
-      })
-      .max(
-        Number(selectedCurrency().limits.maximum) -
-          Number(selectedCurrency().limits.networkFee),
-        {
-          message: `Must be maximum ${
-            Number(selectedCurrency().limits.maximum) -
-            Number(selectedCurrency().limits.networkFee)
-          }`,
-        }
-      ),
-  });
+    const result = FormData.safeParse(formFields());
+    if (!result.success) {
+      setDisabled(true);
+      setErrors(result.error.format());
+    }
+    if (result.success) {
+      setDisabled(false);
+      setErrors();
+    }
+  };
 
   const handleChange = (
     event: InputEvent & {
@@ -56,28 +68,18 @@ export const FormWithdraw = () => {
     }
 
     setFormFields({ ...formFields(), [name]: parsedValue });
-
-    const result = FormData.safeParse(formFields());
-    if (!result.success) {
-      setDisabled(true);
-      setErrors(result.error.format());
-    }
-    if (result.success) {
-      setDisabled(false);
-      setErrors();
-    }
+    validate();
   };
 
   const handleMaxValue = (e: MouseEvent) => {
     e.preventDefault();
 
-    const max = +(
+    const maxs = +(
       selectedCurrency().limits.maximum - selectedCurrency().limits.networkFee
     ).toFixed(6);
+    setFormFields({ ...formFields(), amount: maxs });
 
-    setFormFields({ ...formFields(), amount: max });
-
-    console.log(max);
+    validate();
   };
 
   const handleCryptoAddress = (e: MouseEvent) => {
@@ -87,15 +89,14 @@ export const FormWithdraw = () => {
   const handleSnackbar = (e: MouseEvent) => {
     e.preventDefault();
     setShowSnackbar(true);
-    setFormFields(() => {
-      return { withdraw: "", amount: "" };
-    });
-    console.log();
     setDisabled(true);
   };
 
   createEffect(() => {
+    console.log(formFields());
     console.log(selectedCurrency().limits.maximum);
+    console.log(selectedCurrency().limits.minimum);
+    console.log(errors());
   });
 
   return (
@@ -122,7 +123,7 @@ export const FormWithdraw = () => {
           placeholder="Enter amount"
           value={formFields}
           step="0.000001"
-          onInput={handleChange}
+          onKeyUp={handleChange}
           error={errors}
           buttonAction={handleMaxValue}
         >

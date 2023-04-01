@@ -39,7 +39,7 @@ const generateData = () => {
 
   let prevValue = 0;
 
-  for (var i = 0; i < 200; ++i) {
+  for (var i = 0; i < 100; ++i) {
     let newValue = prevValue + Math.floor(Math.random()) + 1;
     let sign = Math.random() < 0.5 ? -1 : 1;
     const date = new Date(startDate.getTime() + i * 24 * 60 * 60 * 1000);

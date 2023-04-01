@@ -33,7 +33,7 @@ export const Input = (props: InputProps) => {
       <label class=" text-xs text-[#7685a0] my-2 block">{label}</label>
       <div class=" w-full flex flex-col relative mb-4">
         <input
-          class="bg-[#040407] border-[#171c2f] border rounded text-sm py-2 px-3 text-[#b1bdd4]"
+          class="bg-[#040407] border-[#171c2f] [appearance:textfield] border rounded text-sm py-2 px-3 text-[#b1bdd4]"
           {...otherProps}
           name={name}
           value={value()[name]}

@@ -5,7 +5,7 @@ import {
 } from "../components/currencydetail/CurrencyDetail";
 
 export default {
-  title: "Components/CurrencyDetail",
+  title: "CurrencyDetail",
   component: CurrencyDetail,
 };
 

@@ -4,7 +4,7 @@ import {
   IChartApi,
   ISeriesApi,
 } from "lightweight-charts";
-import { createEffect } from "solid-js";
+import { createEffect, on } from "solid-js";
 import { listOfCurrencyProps } from "../../data/chartDataGenerator";
 
 export interface ChartProps {
