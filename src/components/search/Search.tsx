@@ -68,7 +68,8 @@ export const Search: Component<SearchProps> = ({
                 onClick={() => handleCurrencyChange(crypto)}
                 class=" flex cursor-pointer h-10 items-center text-[#f7f7f7] text-sm"
               >
-                <img src={crypto.iconUrl} class="m-2" /> {crypto.fullLabel}
+                <img src={crypto.iconUrl} class="m-2 h-6 w-6" />{" "}
+                {crypto.fullLabel}
                 <span class="text-[#7685a0] ml-2">({crypto.shortLabel})</span>
               </li>
             );
