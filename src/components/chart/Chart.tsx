@@ -4,7 +4,7 @@ import {
   IChartApi,
   ISeriesApi,
 } from "lightweight-charts";
-import { createEffect, on } from "solid-js";
+import { Component, createEffect, on } from "solid-js";
 import { listOfCurrencyProps } from "../../data/chartDataGenerator";
 
 export interface ChartProps {
@@ -15,7 +15,7 @@ let chartContainerRef: HTMLDivElement;
 let container: HTMLDivElement;
 let toolTip: HTMLDivElement;
 
-export const Chart = ({ selectedCurrency }: ChartProps) => {
+export const Chart: Component<ChartProps> = ({ selectedCurrency }) => {
   let chart: IChartApi;
   let seriesRef: ISeriesApi<"Area">;
 
@@ -142,39 +142,43 @@ export const Chart = ({ selectedCurrency }: ChartProps) => {
   });
 
   return (
-    <div id="container" class="relative" ref={container}>
-      <div class="flex m-2">
-        <button
-          class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-sm"
-          onClick={() => seriesRef.setData(selectedCurrency().data.day)}
-        >
-          24H
-        </button>
-        <button
-          class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-sm"
-          onClick={() => seriesRef.setData(selectedCurrency().data.week)}
-        >
-          1W
-        </button>
-        <button
-          class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-sm"
-          onClick={() => seriesRef.setData(selectedCurrency().data.month)}
-        >
-          1M
-        </button>
-        <button
-          class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-sm"
-          onClick={() => seriesRef.setData(selectedCurrency().data.threemonths)}
-        >
-          3M
-        </button>
-      </div>
-      <div
-        ref={toolTip}
-        class="w-36 h-20 ml-12 mt-12 absolute hidden p-2 box-border text-xs text-left border-[#5ab88b] bg-[#171c2f]
+    <div class="bg-[#090b12] border-[#2b344d] border shadow-lg rounded-lg flex-1">
+      <div id="container" class="relative" ref={container}>
+        <div class="flex m-2">
+          <button
+            class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-sm"
+            onClick={() => seriesRef.setData(selectedCurrency().data.day)}
+          >
+            24H
+          </button>
+          <button
+            class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-sm"
+            onClick={() => seriesRef.setData(selectedCurrency().data.week)}
+          >
+            1W
+          </button>
+          <button
+            class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-sm"
+            onClick={() => seriesRef.setData(selectedCurrency().data.month)}
+          >
+            1M
+          </button>
+          <button
+            class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-sm"
+            onClick={() =>
+              seriesRef.setData(selectedCurrency().data.threemonths)
+            }
+          >
+            3M
+          </button>
+        </div>
+        <div
+          ref={toolTip}
+          class="w-36 h-20 ml-12 mt-12 absolute hidden p-2 box-border text-xs text-left border-[#5ab88b] bg-[#171c2f]
          z-40 left-3 top-3 pointer-events-none border-l-2 rounded-sm antialiased flex-col shadow-md"
-      ></div>
-      <div ref={chartContainerRef} />
+        ></div>
+        <div ref={chartContainerRef} />
+      </div>
     </div>
   );
 };

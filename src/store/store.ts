@@ -1,6 +1,6 @@
 import { createSignal } from "solid-js";
 import { currencyData as data } from "../data/chartDataGenerator";
-import { ZodError } from "zod";
+import { ZodError, ZodFormattedError } from "zod";
 
 interface FormFields {
   withdraw: string;
@@ -14,7 +14,8 @@ const defaultFormFields: FormFields = {
 
 export const [formFields, setFormFields] =
   createSignal<FormFields>(defaultFormFields);
-export const [errors, setErrors] = createSignal();
+export const [errors, setErrors] =
+  createSignal<ZodFormattedError<FormFields>>();
 
 export const [cryptoList, setCryptoList] = createSignal(data);
 export const [selectedCurrency, setSelectedCurrency] = createSignal(data[0]);

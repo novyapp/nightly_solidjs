@@ -1,3 +1,4 @@
+import { Component } from "solid-js";
 import { selectedCurrency } from "../../store/store";
 
 export interface CurrencySelectProps {
@@ -5,10 +6,10 @@ export interface CurrencySelectProps {
   setToogleCryptoList: (arg0: boolean) => void;
 }
 
-export const CurrencySelect = ({
+export const CurrencySelect: Component<CurrencySelectProps> = ({
   toogleCryptoList,
   setToogleCryptoList,
-}: CurrencySelectProps) => {
+}) => {
   const handleToggle = () => {
     setToogleCryptoList(!toogleCryptoList());
   };

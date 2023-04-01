@@ -1,12 +1,12 @@
 import { selectedCurrency } from "../../store/store";
-import { createEffect, children, JSXElement } from "solid-js";
+import { createEffect, children, JSXElement, Component } from "solid-js";
 
 export interface CurrencyDetailProps {
   children: JSXElement;
   label: string;
 }
 
-export const CurrencyDetail = (props: CurrencyDetailProps) => {
+export const CurrencyDetail: Component<CurrencyDetailProps> = (props) => {
   const currencyData = children(() => props.children);
 
   return (

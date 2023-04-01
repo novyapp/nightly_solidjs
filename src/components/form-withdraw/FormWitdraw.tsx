@@ -1,18 +1,18 @@
-import { createEffect } from "solid-js";
 import { z } from "zod";
 import { Toggle } from "../toggle/Toggle";
 import {
   formFields,
   setFormFields,
   selectedCurrency,
-  disabled,
   setDisabled,
   setShowSnackbar,
   setErrors,
   errors,
+  disabled,
 } from "../../store/store";
 import { Input } from "../input/Input";
 import { CurrencyDetail } from "../currencydetail/CurrencyDetail";
+import { Button } from "../button/Button";
 
 export const FormWithdraw = () => {
   const validate = () => {
@@ -92,18 +92,11 @@ export const FormWithdraw = () => {
     setDisabled(true);
   };
 
-  createEffect(() => {
-    console.log(formFields());
-    console.log(selectedCurrency().limits.maximum);
-    console.log(selectedCurrency().limits.minimum);
-    console.log(errors());
-  });
-
   return (
-    <>
-      <span class="mb-6 block">Withdraw crypto</span>
-      <Toggle />
+    <div class="bg-[#090b12]  border border-[#2b344d] rounded-lg shadow-lg p-4 relative w-[330px]">
       <form>
+        <span class="mb-6 block">Withdraw crypto</span>
+        <Toggle />
         <Input
           label="Withdraw to"
           name="withdraw"
@@ -140,14 +133,8 @@ export const FormWithdraw = () => {
             ~ {selectedCurrency().limits.networkFee}
           </CurrencyDetail>
         </div>
-        <button
-          class="w-full bg-[#6067f9] h-8 rounded text-sm border-0 mt-4 disabled:bg-[#7685a0]"
-          disabled={disabled()}
-          onClick={(e) => handleSnackbar(e)}
-        >
-          Withdraw
-        </button>
+        <Button label="Withdraw" action={handleSnackbar} disabled={disabled} />
       </form>
-    </>
+    </div>
   );
 };

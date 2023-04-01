@@ -6,7 +6,6 @@ import {
   setSelectedCurrency,
   setFormFields,
   setDisabled,
-  setErrors,
   formFields,
 } from "../../store/store";
 

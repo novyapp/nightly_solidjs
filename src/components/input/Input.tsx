@@ -1,17 +1,16 @@
-import { JSXElement, createEffect } from "solid-js";
+import { Component, JSXElement, createEffect } from "solid-js";
 
 export interface InputProps {
   label: string;
   buttonAction?: (e: MouseEvent) => void;
   buttonType?: string;
   children: JSXElement;
-  error: any;
   name: string;
   value: () => Record<string, any>;
   [key: string]: any;
 }
 
-export const Input = (props: InputProps) => {
+export const Input: Component<InputProps> = (props) => {
   const {
     label,
     buttonAction,
@@ -33,7 +32,10 @@ export const Input = (props: InputProps) => {
       <label class=" text-xs text-[#7685a0] my-2 block">{label}</label>
       <div class=" w-full flex flex-col relative mb-4">
         <input
-          class="bg-[#040407] border-[#171c2f] [appearance:textfield] border rounded text-sm py-2 px-3 text-[#b1bdd4]"
+          class="bg-[#040407] border-[#171c2f]  border rounded text-sm py-2 px-3 text-[#b1bdd4]
+          focus:outline-none focus:border-[#29304b] focus:ring-1 focus:ring-[#29304b]
+    
+          "
           {...otherProps}
           name={name}
           value={value()[name]}
