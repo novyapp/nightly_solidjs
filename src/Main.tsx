@@ -14,7 +14,7 @@ export const Main: Component = () => {
   return (
     <div class="flex flex-col relative overflow-hidden min-h-screen">
       <div class="my-4 mx-6 h-8">
-        <img src="/logo.svg" alt="logo" />
+        <img src="/logo.svg" alt="logo" class=" h-12" />
       </div>
       <div class="flex gap-10 m-14 items-start">
         <Suspense fallback={<Loader />}>
