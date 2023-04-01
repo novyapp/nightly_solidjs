@@ -1,5 +1,5 @@
 import { selectedCurrency } from "../../store/store";
-import { createEffect, children, JSXElement, Component } from "solid-js";
+import { children, JSXElement, Component } from "solid-js";
 
 export interface CurrencyDetailProps {
   children: JSXElement;

@@ -33,7 +33,6 @@ export const Search: Component<SearchProps> = ({
     setFormFields({ ...formFields(), amount: "" });
     setDisabled(true);
     setSelectedChartData(filterChartData);
-    console.log(selectedChartData());
   };
 
   const filteredCurrency = createMemo(() =>

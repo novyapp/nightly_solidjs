@@ -1,5 +1,5 @@
 import { Story } from "@storybook/web-components";
-import { Chart } from "../components/chart/Chart";
+import Chart from "../components/chart/Chart";
 import { ChartProps } from "../components/chart/Chart";
 
 import { selectedChartData, selectedCurrency } from "../store/store";
