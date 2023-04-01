@@ -1,7 +1,7 @@
 import { Toggle } from "../components/toggle/Toggle";
 
 export default {
-  title: "Toggle",
+  title: "UI/Toggle",
   component: Toggle,
 };
 

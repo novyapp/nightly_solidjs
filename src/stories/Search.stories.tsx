@@ -3,7 +3,7 @@ import { createSignal } from "solid-js";
 import { Search, SearchProps } from "../components/search/Search";
 
 export default {
-  title: "Search",
+  title: "UI/Search",
   component: Search,
 };
 

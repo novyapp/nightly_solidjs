@@ -6,11 +6,11 @@ import { Snackbar } from "./components/snackbar/Snackbar";
 
 export const Main: Component = () => {
   return (
-    <div class="flex flex-col relative">
+    <div class="flex flex-col relative overflow-hidden">
       <div class="my-4 mx-6">
         <img src="/logo.svg" alt="logo" />
       </div>
-      <div class="flex justify-between gap-10 m-14">
+      <div class="flex gap-10 m-14 items-start">
         <Snackbar />
         <FormWithdraw />
         <Chart chartData={selectedChartData} />

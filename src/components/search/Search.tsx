@@ -8,6 +8,7 @@ import {
   formFields,
   chartData,
   setSelectedChartData,
+  selectedChartData,
 } from "../../store/store";
 import { listOfCurrencyProps } from "../../data/currenciesDataGenerator";
 
@@ -32,6 +33,7 @@ export const Search: Component<SearchProps> = ({
     setFormFields({ ...formFields(), amount: "" });
     setDisabled(true);
     setSelectedChartData(filterChartData);
+    console.log(selectedChartData());
   };
 
   const filteredCurrency = createMemo(() =>

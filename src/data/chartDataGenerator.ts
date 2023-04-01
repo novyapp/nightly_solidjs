@@ -27,7 +27,7 @@ const generateData = () => {
 
   let prevValue = 0;
 
-  for (var i = 0; i < 100; ++i) {
+  for (var i = 0; i < 50; ++i) {
     let newValue = prevValue + Math.floor(Math.random()) + 1;
     let sign = Math.random() < 0.5 ? -1 : 1;
     const date = new Date(startDate.getTime() + i * 24 * 60 * 60 * 1000);
@@ -68,3 +68,5 @@ export const currencyChartData: ChartDataProps[] = listOfCurrency.map(
     };
   }
 );
+
+console.log(currencyChartData);

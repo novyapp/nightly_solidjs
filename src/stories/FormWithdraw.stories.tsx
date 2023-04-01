@@ -2,7 +2,7 @@ import { Story } from "@storybook/web-components";
 import { FormWithdraw } from "../components/form-withdraw/FormWitdraw";
 
 export default {
-  title: "Component/FormWithdraw",
+  title: "Component/Form Withdraw",
   component: FormWithdraw,
 };
 

@@ -3,7 +3,7 @@ import { Story } from "@storybook/web-components";
 import { Button, ButtonProps } from "../components/button/Button";
 
 export default {
-  title: "Button",
+  title: "UI/Button",
   component: Button,
   argTypes: {
     label: { control: "text" },

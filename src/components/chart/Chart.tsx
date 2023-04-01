@@ -22,11 +22,11 @@ export const Chart: Component<ChartProps> = ({ chartData }) => {
   createEffect(() => {
     const chartOptions = {
       layout: {
-        background: { type: ColorType.Solid, color: "#090b12" },
-        textColor: "#ffffff",
+        background: { type: ColorType.Solid, color: "transparent" },
+        textColor: "#7685A0",
       },
-      width: chartContainerRef.clientWidth,
-      height: 400,
+
+      height: 300,
     };
 
     chart = createChart(chartContainerRef, chartOptions);
@@ -43,6 +43,7 @@ export const Chart: Component<ChartProps> = ({ chartData }) => {
           labelVisible: false,
         },
       },
+
       // hide the grid lines
       grid: {
         vertLines: {
@@ -52,6 +53,8 @@ export const Chart: Component<ChartProps> = ({ chartData }) => {
           visible: false,
         },
       },
+      handleScale: false,
+      handleScroll: false,
     });
 
     seriesRef = chart.addAreaSeries({
@@ -60,16 +63,26 @@ export const Chart: Component<ChartProps> = ({ chartData }) => {
       lineColor: "#5AB88B",
       lineWidth: 2,
       crosshairMarkerVisible: true,
-      priceLineVisible: true,
+      priceLineVisible: false,
     });
 
     seriesRef.priceScale().applyOptions({
       scaleMargins: {
         top: 0.3, // leave some space for the legend
-        bottom: 0.25,
+        bottom: 0.15,
       },
+      visible: false,
       autoScale: true,
     });
+
+    new ResizeObserver((entries) => {
+      if (entries.length === 0 || entries[0].target !== chartContainerRef) {
+        return;
+      }
+      const newRect = entries[0].contentRect;
+      chart.applyOptions({ height: newRect.height, width: newRect.width });
+      chart.timeScale().fitContent();
+    }).observe(chartContainerRef);
 
     const toolTipWidth = 80;
     const toolTipHeight = 80;
@@ -131,8 +144,6 @@ export const Chart: Component<ChartProps> = ({ chartData }) => {
         toolTip.style.top = coordinateY + "px";
       }
     });
-
-    chart.timeScale().fitContent();
   });
 
   createEffect(() => {
@@ -142,7 +153,7 @@ export const Chart: Component<ChartProps> = ({ chartData }) => {
   });
 
   return (
-    <div class="bg-[#090b12] border-[#2b344d] border shadow-lg rounded-lg flex-1">
+    <div class="bg-[#090b12] border-[#2b344d] border shadow-lg rounded-lg grow min-w-[200px] items-start ">
       <div id="container" class="relative" ref={container}>
         <div class="flex m-2">
           <button
@@ -172,7 +183,7 @@ export const Chart: Component<ChartProps> = ({ chartData }) => {
         </div>
         <div
           ref={toolTip}
-          class="w-36 h-20 ml-12 mt-12 absolute hidden p-2 box-border text-xs text-left border-[#5ab88b] bg-[#171c2f]
+          class="w-36 h-20 ml-12 mt-8 absolute hidden p-2 box-border text-xs text-left border-[#5ab88b] bg-[#171c2f]
          z-40 left-3 top-3 pointer-events-none border-l-2 rounded-sm antialiased flex-col shadow-md"
         ></div>
         <div ref={chartContainerRef} />
