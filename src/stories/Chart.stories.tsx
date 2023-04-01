@@ -2,9 +2,8 @@ import { Story } from "@storybook/web-components";
 import { Chart } from "../components/chart/Chart";
 import { ChartProps } from "../components/chart/Chart";
 
-import { selectedCurrency } from "../store/store";
-
-import { listOfCurrencyProps } from "../data/chartDataGenerator";
+import { selectedChartData, selectedCurrency } from "../store/store";
+import { ChartDataProps } from "../data/chartDataGenerator";
 
 export default {
   title: "Component/Chart",
@@ -12,10 +11,10 @@ export default {
 };
 
 const Template: Story<ChartProps> = (args) => (
-  <Chart {...args} selectedCurrency={selectedCurrency} />
+  <Chart {...args} chartData={selectedChartData} />
 );
 
 export const Default = Template.bind({});
 Default.args = {
-  selectedCurrency: () => [] as listOfCurrencyProps,
+  chartData: () => "" as ChartDataProps,
 };

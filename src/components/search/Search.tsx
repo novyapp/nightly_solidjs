@@ -1,5 +1,4 @@
 import { Component, createMemo, For } from "solid-js";
-import { listOfCurrencyProps } from "../../data/chartDataGenerator";
 
 import {
   cryptoList,
@@ -7,7 +6,10 @@ import {
   setFormFields,
   setDisabled,
   formFields,
+  chartData,
+  setSelectedChartData,
 } from "../../store/store";
+import { listOfCurrencyProps } from "../../data/currenciesDataGenerator";
 
 export interface SearchProps {
   filter: () => string;
@@ -21,11 +23,15 @@ export const Search: Component<SearchProps> = ({
   setToogleCryptoList,
 }) => {
   const handleCurrencyChange = (item: listOfCurrencyProps) => {
+    const [filterChartData] = chartData().filter(
+      (chart) => chart.shortLabel === item.shortLabel
+    );
     setSelectedCurrency(item);
     setFilter("");
     setToogleCryptoList(false);
     setFormFields({ ...formFields(), amount: "" });
     setDisabled(true);
+    setSelectedChartData(filterChartData);
   };
 
   const filteredCurrency = createMemo(() =>

@@ -5,17 +5,17 @@ import {
   ISeriesApi,
 } from "lightweight-charts";
 import { Component, createEffect, on } from "solid-js";
-import { listOfCurrencyProps } from "../../data/chartDataGenerator";
+import { ChartDataProps } from "../../data/chartDataGenerator";
 
 export interface ChartProps {
-  selectedCurrency: () => listOfCurrencyProps;
+  chartData: () => ChartDataProps;
 }
 
 let chartContainerRef: HTMLDivElement;
 let container: HTMLDivElement;
 let toolTip: HTMLDivElement;
 
-export const Chart: Component<ChartProps> = ({ selectedCurrency }) => {
+export const Chart: Component<ChartProps> = ({ chartData }) => {
   let chart: IChartApi;
   let seriesRef: ISeriesApi<"Area">;
 
@@ -104,8 +104,8 @@ export const Chart: Component<ChartProps> = ({ selectedCurrency }) => {
           Math.round(100 * price) / 100
         }$</span>
         </span>
-        <span>Leverage:  ${selectedCurrency().leverage}</span>
-        <span>Margin usage: ${selectedCurrency().margin}</span>
+        <span>Leverage:  ${chartData().leverage}</span>
+        <span>Margin usage: ${chartData().margin}</span>
  `;
 
         const coordinate = seriesRef.priceToCoordinate(price);
@@ -137,7 +137,7 @@ export const Chart: Component<ChartProps> = ({ selectedCurrency }) => {
 
   createEffect(() => {
     if (chart) {
-      seriesRef.setData(selectedCurrency().data.day);
+      seriesRef.setData(chartData().data.day);
     }
   });
 
@@ -147,27 +147,25 @@ export const Chart: Component<ChartProps> = ({ selectedCurrency }) => {
         <div class="flex m-2">
           <button
             class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-sm"
-            onClick={() => seriesRef.setData(selectedCurrency().data.day)}
+            onClick={() => seriesRef.setData(chartData().data.day)}
           >
             24H
           </button>
           <button
             class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-sm"
-            onClick={() => seriesRef.setData(selectedCurrency().data.week)}
+            onClick={() => seriesRef.setData(chartData().data.week)}
           >
             1W
           </button>
           <button
             class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-sm"
-            onClick={() => seriesRef.setData(selectedCurrency().data.month)}
+            onClick={() => seriesRef.setData(chartData().data.month)}
           >
             1M
           </button>
           <button
             class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-sm"
-            onClick={() =>
-              seriesRef.setData(selectedCurrency().data.threemonths)
-            }
+            onClick={() => seriesRef.setData(chartData().data.threemonths)}
           >
             3M
           </button>

@@ -1,6 +1,6 @@
-import { Component, Show } from "solid-js";
+import { Component } from "solid-js";
 import { Chart } from "./components/chart/Chart";
-import { selectedCurrency, showSnackbar } from "./store/store";
+import { chartData, selectedChartData, selectedCurrency } from "./store/store";
 import { FormWithdraw } from "./components/form-withdraw/FormWitdraw";
 import { Snackbar } from "./components/snackbar/Snackbar";
 
@@ -13,7 +13,7 @@ export const Main: Component = () => {
       <div class="flex justify-between gap-10 m-14">
         <Snackbar />
         <FormWithdraw />
-        <Chart selectedCurrency={selectedCurrency} />
+        <Chart chartData={selectedChartData} />
       </div>
     </div>
   );

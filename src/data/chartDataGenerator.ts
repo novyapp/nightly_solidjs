@@ -1,22 +1,18 @@
-import { listOfCurrency } from "./currencies";
+import { randomMargin } from "../utils/math.utils";
+import { listOfCurrency } from "./currenciesDataGenerator";
 
 export type ChartData = {
   time: string;
   value: number;
 };
 
-export interface listOfCurrencyProps {
+export interface ChartDataProps {
   id: number;
   fullLabel: string;
   shortLabel: string;
   iconUrl: string;
   margin: string;
   leverage: string;
-  limits: {
-    minimum: number;
-    maximum: number;
-    networkFee: number;
-  };
   data: {
     day: ChartData[];
     week: ChartData[];
@@ -24,14 +20,6 @@ export interface listOfCurrencyProps {
     threemonths: ChartData[];
   };
 }
-
-const randomIntFromInterval = (min: number, max: number) =>
-  (Math.random() * (max - min) + min).toFixed(6);
-
-const randomMinimum = () => Number(randomIntFromInterval(0.00005, 0.0001));
-const randomMaximum = () => Number(randomIntFromInterval(15.5, 9.5));
-const randomNetworkFee = () =>
-  Number(randomIntFromInterval(0.000008, 0.000001));
 
 const generateData = () => {
   const arr = [];
@@ -65,21 +53,18 @@ const generateData = () => {
   return arr;
 };
 
-export const currencyData = listOfCurrency.map((currency) => {
-  return {
-    ...currency,
-    margin: Number(Math.random() * (10 - 6.7) + 6.7).toFixed(1),
-    leverage: "1.25x",
-    limits: {
-      minimum: randomMinimum(),
-      maximum: randomMaximum(),
-      networkFee: randomNetworkFee(),
-    },
-    data: {
-      day: generateData(),
-      week: generateData(),
-      month: generateData(),
-      threemonths: generateData(),
-    },
-  };
-});
+export const currencyChartData: ChartDataProps[] = listOfCurrency.map(
+  (currency) => {
+    return {
+      ...currency,
+      margin: randomMargin(),
+      leverage: "1.25x",
+      data: {
+        day: generateData(),
+        week: generateData(),
+        month: generateData(),
+        threemonths: generateData(),
+      },
+    };
+  }
+);

@@ -1,6 +1,5 @@
-import { Meta, Story } from "@storybook/web-components";
+import { Story } from "@storybook/web-components";
 import { createSignal } from "solid-js";
-import { listOfCurrencyProps } from "../data/chartDataGenerator";
 import { Search, SearchProps } from "../components/search/Search";
 
 export default {
