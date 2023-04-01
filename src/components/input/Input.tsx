@@ -48,9 +48,10 @@ export const Input: Component<InputProps> = (props) => {
           {children}
         </button>
         {error() &&
-          error()[name]?._errors?.map((er: string) => (
-            <p class=" text-[red] text-xs">{er}</p>
-          ))}
+          error()[name]?._errors?.map((er: string) => {
+            if (er === "Expected number, received string") return;
+            return <p class=" text-[red] text-xs">{er}</p>;
+          })}
       </div>
     </div>
   );

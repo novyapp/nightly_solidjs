@@ -10,7 +10,7 @@ interface FormFields {
 
 const defaultFormFields: FormFields = {
   withdraw: "",
-  amount: 0,
+  amount: "",
 };
 
 export const [formFields, setFormFields] =

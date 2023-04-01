@@ -14,7 +14,7 @@ import { Input } from "../input/Input";
 import { CurrencyDetail } from "../currencydetail/CurrencyDetail";
 import { Button } from "../button/Button";
 
-export const FormWithdraw = () => {
+const FormWithdraw = () => {
   const validate = () => {
     const FormData = z.object({
       withdraw: z
@@ -138,3 +138,5 @@ export const FormWithdraw = () => {
     </div>
   );
 };
+
+export default FormWithdraw;

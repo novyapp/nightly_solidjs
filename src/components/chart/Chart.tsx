@@ -15,7 +15,7 @@ let chartContainerRef: HTMLDivElement;
 let container: HTMLDivElement;
 let toolTip: HTMLDivElement;
 
-export const Chart: Component<ChartProps> = ({ chartData }) => {
+const Chart: Component<ChartProps> = ({ chartData }) => {
   let chart: IChartApi;
   let seriesRef: ISeriesApi<"Area">;
 
@@ -191,3 +191,5 @@ export const Chart: Component<ChartProps> = ({ chartData }) => {
     </div>
   );
 };
+
+export default Chart;

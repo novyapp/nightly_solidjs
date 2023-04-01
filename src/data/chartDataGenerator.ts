@@ -68,5 +68,3 @@ export const currencyChartData: ChartDataProps[] = listOfCurrency.map(
     };
   }
 );
-
-console.log(currencyChartData);
