@@ -2,7 +2,7 @@ name: Build and Deploy Storybook
 on:
   push:
     branches:
-      - "dev" # Trigger the action only pushed to a specific branch
+      - "master" # Trigger the action only pushed to a specific branch
       - "!main" # Ignore if pushed to a specific branch
 jobs:
   build-and-deploy:
@@ -15,6 +15,6 @@ jobs:
         uses: devmasx/merge-branch@1.4.0
         with:
           type: now
-          from_branch: dev
+          from_branch: master
           target_branch: storybook-deploy
           github_token: ${{ github.token }}
