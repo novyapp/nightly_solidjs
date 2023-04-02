@@ -110,12 +110,20 @@ const Chart: Component<ChartProps> = ({ chartData }) => {
         let price: number;
         price = (dataSeries as { value: number }).value;
 
+        const priceOptions = {
+          style: "currency",
+          currency: "USD",
+        };
+
+        const formatedPrice = new Intl.NumberFormat(
+          "en-US",
+          priceOptions
+        ).format(price);
+
         toolTip.innerHTML = `
         <span style="color: ${"#7685a0"}">${dateStr}</span>
         <span>
-          Balance: <span style="color: ${"#5ab88b"}">  ${
-          Math.round(100 * price) / 100
-        }$</span>
+          Balance: <span style="color: ${"#5ab88b"}">  ${formatedPrice}</span>
         </span>
         <span>Leverage:  ${chartData().leverage}</span>
         <span>Margin usage: ${chartData().margin}</span>

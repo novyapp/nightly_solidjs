@@ -8,3 +8,5 @@ export const randomNetworkFee = () =>
   Number(randomIntFromInterval(0.000008, 0.000001));
 export const randomMargin = () =>
   Number(Math.random() * (10 - 6.7) + 6.7).toFixed(1);
+export const randomBalans = () =>
+  Number(Math.random() * (0.08 - 0.0000001) + 0.0000001).toFixed(7);
