@@ -15,19 +15,19 @@ export const CurrencySelect: Component<CurrencySelectProps> = ({
   };
 
   return (
-    <>
-      <label class=" text-xs text-[#7685a0] my-2 block">Select coin</label>
+    <div>
+      <label class=" text-xs text-[#7685a0] my-2 block">Select a coin</label>
       <div
         class="md:w-[300px] h-10 py-2 px-3 bg-[#171c2f] rounded text-sm
-         text-[#f7f7f7] flex justify-between items-center cursor-pointer mb-4"
+         text-[#f7f7f7] flex justify-between items-center cursor-pointer mb-2"
         onClick={() => handleToggle()}
       >
         <img src={selectedCurrency().iconUrl} class="mr-2" />
         {selectedCurrency().fullLabel}
-        <span class="block ml-2 text-[#7685a0]">
+        <span class="block ml-1 text-[#7685a0]">
           ({selectedCurrency().shortLabel})
         </span>
-        <span class="ml-auto mr-3 text-[#7685a0]">0.0522</span>
+        <span class="ml-auto mr-2 text-[#7685a0]">0.0522103</span>
         <img
           src="star.png"
           class={`${
@@ -35,6 +35,6 @@ export const CurrencySelect: Component<CurrencySelectProps> = ({
           } transition-transform`}
         />
       </div>
-    </>
+    </div>
   );
 };

@@ -13,8 +13,8 @@ const FormWithdraw = lazy(
 export const Main: Component = () => {
   return (
     <div class="flex flex-col relative overflow-hidden min-h-screen">
-      <div class="my-4 mx-6 h-8">
-        <img src="/logo.svg" alt="logo" class=" h-12" />
+      <div class="mt-1 ml-5 h-12 mb-3">
+        <img src="/logo.svg" alt="logo" class=" h-12 ml-[1px] mt-[1px]" />
       </div>
       <div class="flex gap-10 m-6 md:m-14 items-start flex-col md:flex-row">
         <Suspense fallback={<Loader />}>

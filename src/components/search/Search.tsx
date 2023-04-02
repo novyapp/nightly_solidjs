@@ -56,20 +56,20 @@ export const Search: Component<SearchProps> = ({
         />
         <img
           src="union.png"
-          class="absolute right-3 top-0 translate-y-[100%]"
+          class="absolute right-3 top-0 translate-y-[90%] translate-x-1"
         />
       </div>
-      <ul class=" mt-3 p-0">
+      <ul class=" mt-1 p-0">
         <For each={filteredCurrency()}>
           {(crypto) => {
             return (
               <li
                 onClick={() => handleCurrencyChange(crypto)}
-                class=" flex cursor-pointer h-10 items-center text-[#f7f7f7] text-sm"
+                class="flex cursor-pointer h-10 mb-1 items-center text-[#f7f7f7] text-sm"
               >
                 <img src={crypto.iconUrl} class="m-2 h-6 w-6" />{" "}
                 {crypto.fullLabel}
-                <span class="text-[#7685a0] ml-2">({crypto.shortLabel})</span>
+                <span class="text-[#7685a0] ml-1">({crypto.shortLabel})</span>
               </li>
             );
           }}

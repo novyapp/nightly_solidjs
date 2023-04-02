@@ -25,9 +25,9 @@ const generateData = () => {
   const arr = [];
   const startDate = new Date();
 
-  let prevValue = 0;
+  let prevValue = 20000;
 
-  for (var i = 0; i < 50; ++i) {
+  for (var i = 0; i < 200; ++i) {
     let newValue = prevValue + Math.floor(Math.random()) + 1;
     let sign = Math.random() < 0.5 ? -1 : 1;
     const date = new Date(startDate.getTime() + i * 24 * 60 * 60 * 1000);

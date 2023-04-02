@@ -93,9 +93,9 @@ const FormWithdraw = () => {
   };
 
   return (
-    <div class="bg-[#090b12]  border border-[#2b344d] rounded-lg shadow-lg p-4 w-full relative md:w-[330px]">
+    <div class="bg-[#090b12]  border border-[#2b344d] rounded-lg shadow-lg p-4 ml-[-2px] w-full relative md:w-[332px]">
       <form class="w-full flex flex-col">
-        <span class="mb-6 block">Withdraw crypto</span>
+        <span class="mb-3 block text-base">Withdraw crypto</span>
         <Toggle />
         <Input
           label="Withdraw to"
@@ -122,7 +122,7 @@ const FormWithdraw = () => {
         >
           Max
         </Input>
-        <div class="flex flex-wrap pt-4 border-t border-[#2b344d]">
+        <div class="flex flex-wrap pt-4 border-t mt-2 border-[#2b344d]">
           <CurrencyDetail label="Minimum amount">
             {selectedCurrency().limits.minimum}
           </CurrencyDetail>

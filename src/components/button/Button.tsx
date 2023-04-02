@@ -9,7 +9,7 @@ export interface ButtonProps {
 export const Button: Component<ButtonProps> = ({ label, action, disabled }) => {
   return (
     <button
-      class="w-full bg-[#6067f9] h-8 rounded text-sm border-0 mt-4 cursor-pointer disabled:bg-[#7685a0] disabled:cursor-not-allowed"
+      class="w-full bg-[#6067f9] h-8 pt-1 rounded text-sm border-0 mt-2 cursor-pointer disabled:bg-[#7685a0] disabled:cursor-not-allowed"
       disabled={disabled()}
       onClick={(e) => action(e)}
     >
