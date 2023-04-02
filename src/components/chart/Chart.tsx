@@ -43,6 +43,9 @@ const Chart: Component<ChartProps> = ({ chartData }) => {
           labelVisible: false,
         },
       },
+      localization: {
+        locale: "en-US",
+      },
 
       // hide the grid lines
       grid: {
