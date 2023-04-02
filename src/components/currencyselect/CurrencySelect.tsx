@@ -27,7 +27,9 @@ export const CurrencySelect: Component<CurrencySelectProps> = ({
         <span class="block ml-1 text-[#7685a0]">
           ({selectedCurrency().shortLabel})
         </span>
-        <span class="ml-auto mr-2 text-[#7685a0]">0.0522103</span>
+        <span class="ml-auto mr-2 text-[#7685a0]">
+          {selectedCurrency().balanse}
+        </span>
         <img
           src="star.png"
           class={`${

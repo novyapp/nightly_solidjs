@@ -1,4 +1,5 @@
 import {
+  randomBalans,
   randomMargin,
   randomMaximum,
   randomMinimum,
@@ -18,6 +19,7 @@ export interface listOfCurrencyProps {
   shortLabel: string;
   iconUrl: string;
   margin: string;
+  balanse: string;
   leverage: string;
   limits: {
     minimum: number;
@@ -71,6 +73,7 @@ export const currencyData: listOfCurrencyProps[] = listOfCurrency.map(
       ...currency,
       margin: randomMargin(),
       leverage: "1.25x",
+      balanse: randomBalans(),
       limits: {
         minimum: randomMinimum(),
         maximum: randomMaximum(),
