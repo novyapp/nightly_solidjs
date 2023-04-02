@@ -26,7 +26,7 @@ const Chart: Component<ChartProps> = ({ chartData }) => {
         textColor: "#7685A0",
       },
 
-      height: 300,
+      height: 260,
     };
 
     chart = createChart(chartContainerRef, chartOptions);
@@ -157,25 +157,25 @@ const Chart: Component<ChartProps> = ({ chartData }) => {
       <div id="container" class="relative" ref={container}>
         <div class="flex m-2">
           <button
-            class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-sm"
+            class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-xs"
             onClick={() => seriesRef.setData(chartData().data.day)}
           >
             24H
           </button>
           <button
-            class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-sm"
+            class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-xs"
             onClick={() => seriesRef.setData(chartData().data.week)}
           >
             1W
           </button>
           <button
-            class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-sm"
+            class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-xs"
             onClick={() => seriesRef.setData(chartData().data.month)}
           >
             1M
           </button>
           <button
-            class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-sm"
+            class="border-0 bg-[#2b344d] py-1 px-2 rounded mr-2 cursor-pointer text-xs"
             onClick={() => seriesRef.setData(chartData().data.threemonths)}
           >
             3M
@@ -183,8 +183,8 @@ const Chart: Component<ChartProps> = ({ chartData }) => {
         </div>
         <div
           ref={toolTip}
-          class="w-36 h-20 ml-12 mt-8 absolute hidden p-2 box-border text-xs text-left border-[#5ab88b] bg-[#171c2f]
-         z-40 left-3 top-3 pointer-events-none border-l-2 rounded-sm antialiased flex-col shadow-md"
+          class="w-36 h-20 ml-12 mt-8 absolute hidden p-2 pt-1 box-border text-[10px] text-left border-[#5ab88b] bg-[#171c2f]
+         z-40 left-3 top-3 pointer-events-none border-l-2 rounded-sm antialiased flex-col gap-1 shadow-md"
         ></div>
         <div ref={chartContainerRef} />
       </div>
