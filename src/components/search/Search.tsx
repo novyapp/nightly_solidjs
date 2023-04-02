@@ -44,7 +44,7 @@ export const Search: Component<SearchProps> = ({
   );
 
   return (
-    <div class="w-[300px]  p-2 bg-[#171c2f] border border-[#2b344d] shadow-lg rounded absolute z-10">
+    <div class="md:w-[300px] md:ml-0 p-2 bg-[#171c2f] border border-[#2b344d] shadow-lg rounded absolute z-10">
       <div class="relative">
         <input
           class="bg-[#040407] rounded flex justify-between items-center py-1.5 

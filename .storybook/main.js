@@ -12,6 +12,9 @@ module.exports = {
       // For more details on this addon's options.
       postCss: true,
     },
+    core: {
+      builder: "@storybook/builder-vite",
+    },
   },
   docs: {
     autodocs: "tag",

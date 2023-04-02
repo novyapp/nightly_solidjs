@@ -153,7 +153,7 @@ const Chart: Component<ChartProps> = ({ chartData }) => {
   });
 
   return (
-    <div class="bg-[#090b12] border-[#2b344d] border shadow-lg rounded-lg grow min-w-[200px] items-start ">
+    <div class="bg-[#090b12] border-[#2b344d] border shadow-lg rounded-lg grow w-full md:min-w-[200px] items-start ">
       <div id="container" class="relative" ref={container}>
         <div class="flex m-2">
           <button

@@ -93,8 +93,8 @@ const FormWithdraw = () => {
   };
 
   return (
-    <div class="bg-[#090b12]  border border-[#2b344d] rounded-lg shadow-lg p-4 relative w-[330px]">
-      <form>
+    <div class="bg-[#090b12]  border border-[#2b344d] rounded-lg shadow-lg p-4 w-full relative md:w-[330px]">
+      <form class="w-full flex flex-col">
         <span class="mb-6 block">Withdraw crypto</span>
         <Toggle />
         <Input
