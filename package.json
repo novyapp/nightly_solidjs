@@ -16,6 +16,7 @@
     "@storybook/addon-interactions": "^7.0.0-beta.19",
     "@storybook/addon-links": "^7.0.0-beta.19",
     "@storybook/blocks": "^7.0.0-beta.19",
+    "@storybook/builder-vite": "^7.0.0-beta.19",
     "@storybook/html": "^7.0.0-beta.19",
     "@storybook/html-vite": "^7.0.0-beta.19",
     "@storybook/testing-library": "^0.0.14-next.1",

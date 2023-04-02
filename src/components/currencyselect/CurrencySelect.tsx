@@ -18,7 +18,7 @@ export const CurrencySelect: Component<CurrencySelectProps> = ({
     <>
       <label class=" text-xs text-[#7685a0] my-2 block">Select coin</label>
       <div
-        class="w-[300px] h-10 py-2 px-3 bg-[#171c2f] rounded text-sm
+        class="md:w-[300px] h-10 py-2 px-3 bg-[#171c2f] rounded text-sm
          text-[#f7f7f7] flex justify-between items-center cursor-pointer mb-4"
         onClick={() => handleToggle()}
       >

@@ -16,7 +16,7 @@ export const Main: Component = () => {
       <div class="my-4 mx-6 h-8">
         <img src="/logo.svg" alt="logo" class=" h-12" />
       </div>
-      <div class="flex gap-10 m-14 items-start">
+      <div class="flex gap-10 m-6 md:m-14 items-start flex-col md:flex-row">
         <Suspense fallback={<Loader />}>
           <Snackbar />
           <FormWithdraw />
